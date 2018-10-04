@@ -1,0 +1,43 @@
+/*
+ Theme Name:   Abnormal Hieratic child
+ Theme URI:    https://github.com/LeidenUniversityLibrary/abhier-theme.git
+ Description:  Twenty Seventeen Child Theme for Abnormal Hieratic
+ Author:       Ben Companjen
+ Author URI:   https://orcid.org/0000-0002-7023-9047
+ Template:     twentyseventeen
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  twenty-seventeen-child
+*/
+
+@font-face {
+    font-family: "Junicode";
+    src: url("assets/woff/Junicode.woff") format('woff');
+}
+
+@font-face {
+    font-family: "Junicode";
+    src: url("assets/woff/Junicode-Bold.woff") format('woff');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Junicode";
+    src: url("assets/woff/Junicode-BoldItalic.woff") format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Junicode";
+    src: url("assets/woff/Junicode-Italic.woff") format('woff');
+    font-style: italic;
+}
+
+.transliteration {
+	font-family: "Junicode";
+	font-style: italic;
+	font-size: 120%;
+}
