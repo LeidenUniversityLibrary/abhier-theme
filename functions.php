@@ -1,7 +1,7 @@
 <?php
 function abhier_theme_enqueue_styles() {
 
-    $parent_style = 'twentyseventeen-style';
+    $parent_style = 'modern-style';
 
     wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
     wp_enqueue_style( 'abhier-style',
