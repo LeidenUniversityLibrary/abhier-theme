@@ -39,7 +39,9 @@ get_header();
 			if ( has_excerpt() && ! Modern_Post::is_paged() ) {
 				the_excerpt();
 			}
-			echo $post->ubl_ah_tm_id . '<br>';
+			?>
+			<p>See more information about <a href="https://www.trismegistos.org/daht/detail.php?tm=<?php echo $post->ubl_ah_tm_id;?>" target="_blank"><?php the_title(); ?> in Trismegistos’ Demotic and Hieratic Texts [TM <?php echo $post->ubl_ah_tm_id;?>]</a>.</p>
+			<?php
 			// Mirador viewer goes between excerpt and the rest of the content.
 			do_action( 'ubl_ah_mirador_viewer' );
 
