@@ -39,6 +39,7 @@ get_header();
 			if ( has_excerpt() && ! Modern_Post::is_paged() ) {
 				the_excerpt();
 			}
+			echo $post->ubl_ah_tm_id . '<br>';
 			// Mirador viewer goes between excerpt and the rest of the content.
 			do_action( 'ubl_ah_mirador_viewer' );
 
