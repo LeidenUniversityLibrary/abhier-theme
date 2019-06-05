@@ -35,7 +35,7 @@ get_header();
 
 				?></h1>
 				<p>Note: these search results do not include annotations of words. To search the contents of papyri,
-					please use the <a href="">contents search interface</a>.</p>
+					please use the <a href="https://lab.library.universiteitleiden.nl/abnormal-hieratic/search.php?q=<?php echo get_search_query(); ?>">contents search interface</a>.</p>
 			</header>
 
 			<?php
