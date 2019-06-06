@@ -34,22 +34,17 @@ get_header();
 
 		do_action( 'tha_entry_content_before' );
 
-		// if ( Modern_Post::is_singular() ) {
-
 			if ( has_excerpt() && ! Modern_Post::is_paged() ) {
 				the_excerpt();
 			}
 			?>
-			<p>See more information about <a href="https://www.trismegistos.org/daht/detail.php?tm=<?php echo $post->ubl_ah_tm_id;?>" target="_blank"><?php the_title(); ?> in Trismegistos’ Demotic and Hieratic Texts [TM <?php echo $post->ubl_ah_tm_id;?>]</a>.</p>
+			<p>See more information about <a href="https://www.trismegistos.org/daht/detail.php?tm=<?php echo $post->ubl_ah_tm_id;?>" target="_blank"><?php the_title(); ?>
+				in Trismegistos’ Demotic and Hieratic Texts [TM <?php echo $post->ubl_ah_tm_id;?>]</a>.</p>
 			<?php
 			// Mirador viewer goes between excerpt and the rest of the content.
 			do_action( 'ubl_ah_mirador_viewer' );
 
 			the_content( apply_filters( 'wmhook_modern_summary_continue_reading', '' ) );
-
-		// } else {
-			// the_excerpt();
-		// }
 
 		do_action( 'tha_entry_content_after' );
 
