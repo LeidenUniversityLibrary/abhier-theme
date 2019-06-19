@@ -47,7 +47,10 @@ get_header();
 	else :
 
 		get_template_part( 'template-parts/content/content', 'none' );
-
+		?>
+		<p>Note: these search results do not include annotations of words. To search the contents of papyri,
+					please use the <a href="https://lab.library.universiteitleiden.nl/abnormal-hieratic/search.php?q=<?php echo get_search_query(); ?>">contents search interface</a>.</p>
+		<?php
 	endif;
 
 get_footer();
