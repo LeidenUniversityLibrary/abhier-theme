@@ -43,6 +43,14 @@ get_header();
 			<?php
 			// Mirador viewer goes between excerpt and the rest of the content.
 			do_action( 'ubl_ah_mirador_viewer' );
+			$user_token = wp_create_nonce('mirador');
+			wp_localize_script( 'mirador-config', 'my_object', array(
+				'buildPath' => get_stylesheet_directory_uri() . '/assets/js/mirador/',
+				'manifestUri' => $post->ubl_ah_manifest_uri,
+				'canvasID' => $post->ubl_ah_canvas_uri,
+				'endpointUrl' => rest_url(),
+				'token' => $user_token
+			));
 
 			the_content( apply_filters( 'wmhook_modern_summary_continue_reading', '' ) );
 
