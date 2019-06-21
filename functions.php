@@ -11,9 +11,9 @@ function abhier_theme_enqueue_styles() {
     );
     // Enqueue Mirador
     if (is_single() && 'ubl_ah_papyrus' == get_post_type()) {
-        wp_enqueue_style( 'mirador-style', get_template_directory_uri() . '/js/mirador/css/mirador-combined.css');
-        wp_enqueue_script( 'mirador', get_template_directory_uri() . '/js/mirador/mirador.js', array ( 'jquery' ));
-        wp_enqueue_script( 'mirador-config', get_template_directory_uri() . '/js/mirador/mirador.js', array('mirador'), null, true);
+        wp_enqueue_style( 'mirador-style', get_stylesheet_directory_uri() . '/js/mirador/css/mirador-combined.css');
+        wp_enqueue_script( 'mirador', get_stylesheet_directory_uri() . '/js/mirador/mirador.js', array ( 'jquery' ));
+        wp_enqueue_script( 'mirador-config', get_stylesheet_directory_uri() . '/js/mirador/mirador-config.js', array('mirador'), null, true);
     }
 }
 add_action( 'wp_enqueue_scripts', 'abhier_theme_enqueue_styles' );
