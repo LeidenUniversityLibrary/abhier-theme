@@ -19,8 +19,8 @@ $(function() {
         'Rectangle', 'Ellipse', 'Polygon'
         ],
         annotationEndpoint: {
-        name: 'Simple Annotation Store Endpoint',
-        module: 'SimpleASEndpoint',
+        name: 'WordPress Endpoint',
+        module: 'WordPressEndpoint',
         options: {
             url: my_object.endpointUrl,
             token: my_object.token
