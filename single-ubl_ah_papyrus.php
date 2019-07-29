@@ -48,7 +48,7 @@ get_header();
 				'buildPath' => get_stylesheet_directory_uri() . '/assets/js/mirador/',
 				'manifestUri' => $post->ubl_ah_manifest_uri,
 				'canvasID' => $post->ubl_ah_canvas_uri,
-				'endpointUrl' => rest_url(),
+				'endpointUrl' => rest_url('mirador-anno/v1'),
 				'token' => $user_token
 			));
 
