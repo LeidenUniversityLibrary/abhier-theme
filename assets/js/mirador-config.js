@@ -1,4 +1,11 @@
 var mir;
+var my_object = {
+    buildPath ="",
+    manifestUri="",
+    canvasID="",
+    endpointUrl="",
+    token="",
+}
 $(function() {
     mir = Mirador({
         id: "viewer",
