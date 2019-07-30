@@ -13,7 +13,9 @@ $(function() {
             bottomPanelAvailable: false,
             bottomPanelVisible: false,
             sidePanel: false,
-            id: "the_window"
+            id: "the_window",
+            viewType: "ImageView",
+            availableViews:  ['ImageView'],
         }],
         availableAnnotationDrawingTools: [
         'Rectangle', 'Ellipse', 'Polygon'
@@ -23,7 +25,10 @@ $(function() {
         module: 'WordPressEndpoint',
         options: {
             url: my_object.endpointUrl,
-            token: my_object.token
+            nonce: my_object.nonce,
+            userid: my_object.userid,
+            username: my_object.username,
+            userrole: my_object.userrole,
         }
         }
     });

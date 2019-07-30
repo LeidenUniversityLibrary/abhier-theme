@@ -31,6 +31,8 @@ $.WordPressEndpoint = function (options) {
         userid: null,
         // WordPress username
         username: null,
+        // WordPress user role
+        userrole: null,
         // OA list for Mirador use
         annotationsList: [],
         // internal list for module use to map id to URI
@@ -68,7 +70,7 @@ $.WordPressEndpoint = function (options) {
         type: 'GET',
         dataType: 'json',
         headers: {
-          'X-WP-Nonce': _this.nonce
+          'X-WP-Nonce': this.nonce
         },
         data: {
           uri: options.uri,
@@ -104,7 +106,7 @@ $.WordPressEndpoint = function (options) {
         },
         complete: function(xhr, textStatus) {
             console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
-            _this.nonce = xhr.getResponseHeader('X-WP-Nonce');
+            this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
 
       });
@@ -125,7 +127,7 @@ $.WordPressEndpoint = function (options) {
         type: 'DELETE',
         dataType: 'json',
         headers: {
-            'X-WP-Nonce': _this.nonce
+            'X-WP-Nonce': this.nonce
         },
         data: {
           uri: annotationID,
@@ -145,7 +147,7 @@ $.WordPressEndpoint = function (options) {
         },
         complete: function(xhr, textStatus) {
             console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
-            _this.nonce = xhr.getResponseHeader('X-WP-Nonce');
+            this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
 
       });
@@ -166,7 +168,7 @@ $.WordPressEndpoint = function (options) {
         type: 'POST',
         dataType: 'json',
         headers: {
-            'X-WP-Nonce': _this.nonce
+            'X-WP-Nonce': this.nonce
         },
         data: JSON.stringify(annotation),
         contentType: 'application/json; charset=utf-8',
@@ -185,7 +187,7 @@ $.WordPressEndpoint = function (options) {
         },
         complete: function(xhr, textStatus) {
             console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
-            _this.nonce = xhr.getResponseHeader('X-WP-Nonce');
+            this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
       });
       // this is what updates the viewer
@@ -203,7 +205,7 @@ $.WordPressEndpoint = function (options) {
         type: 'POST',
         dataType: 'json',
         headers: {
-            'X-WP-Nonce': _this.nonce
+            'X-WP-Nonce': this.nonce
         },
         data: JSON.stringify(annotation),
         contentType: 'application/json; charset=utf-8',
@@ -226,7 +228,7 @@ $.WordPressEndpoint = function (options) {
         },
         complete: function(xhr, textStatus) {
             console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
-            _this.nonce = xhr.getResponseHeader('X-WP-Nonce');
+            this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
       });
     },

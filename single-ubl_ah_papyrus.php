@@ -44,12 +44,16 @@ get_header();
 			// Mirador viewer goes between excerpt and the rest of the content.
 			do_action( 'ubl_ah_mirador_viewer' );
 			$user_token = wp_create_nonce('wp_rest');
+			$current_user = wp_get_current_user();
 			wp_localize_script( 'mirador-config', 'my_object', array(
 				'buildPath' => get_stylesheet_directory_uri() . '/assets/js/mirador/',
 				'manifestUri' => $post->ubl_ah_manifest_uri,
 				'canvasID' => $post->ubl_ah_canvas_uri,
 				'endpointUrl' => rest_url('mirador-anno/v1'),
-				'token' => $user_token
+				'nonce' => $user_token,
+				'userid' => $current_user->ID,
+				'username' => $current_user->display_name,
+				'userrole' => current_user_can('edit_others_posts') ? 'Editor' : '',
 			));
 
 			the_content( apply_filters( 'wmhook_modern_summary_continue_reading', '' ) );
