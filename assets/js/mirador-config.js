@@ -1,11 +1,4 @@
 var mir;
-// var my_object = {
-//     buildPath: "",
-//     manifestUri: "",
-//     canvasID: "",
-//     endpointUrl: "",
-//     token: "",
-// }
 $(function() {
     mir = Mirador({
         id: "viewer",
@@ -34,7 +27,7 @@ $(function() {
         }
         }
     });
-    if (true) {
+    if (false) {
         console.log('before emit');
         console.log(mir.viewer);
         console.log(mir.eventEmitter);
