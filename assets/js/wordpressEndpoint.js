@@ -22,7 +22,7 @@
 $.WordPressEndpoint = function (options) {
 
   jQuery.extend(this, {
-        token: null,
+        nonce: null,
         // prefix:    'annotation', /**/
         uri: null,
         url: options.url,
@@ -64,7 +64,7 @@ $.WordPressEndpoint = function (options) {
         type: 'GET',
         dataType: 'json',
         headers: {
-          'X-WP-Nonce': this.token
+          'X-WP-Nonce': this.nonce
         },
         data: {
           uri: options.uri,
@@ -117,7 +117,7 @@ $.WordPressEndpoint = function (options) {
         type: 'DELETE',
         dataType: 'json',
         headers: {
-          // 'x-annotator-auth-token': this.token
+            'X-WP-Nonce': this.nonce
         },
         data: {
           uri: annotationID,
@@ -154,7 +154,7 @@ $.WordPressEndpoint = function (options) {
         type: 'POST',
         dataType: 'json',
         headers: {
-          // 'x-annotator-auth-token': this.token
+            'X-WP-Nonce': this.nonce
         },
         data: JSON.stringify(annotation),
         contentType: 'application/json; charset=utf-8',
@@ -187,7 +187,7 @@ $.WordPressEndpoint = function (options) {
         type: 'POST',
         dataType: 'json',
         headers: {
-          // 'x-annotator-auth-token': this.token
+            'X-WP-Nonce': this.nonce
         },
         data: JSON.stringify(annotation),
         contentType: 'application/json; charset=utf-8',
@@ -219,7 +219,28 @@ $.WordPressEndpoint = function (options) {
       }
     },
     userAuthorize: function (action, annotation) {
-      return true; // allow all
-    }
+        //if this is an editor or administrator, they have access to all annotations
+        if (this.roles && (this.roles.indexOf('Editor') !== -1 || this.roles.indexOf('Administrator') !== -1)){
+            return true;
+        }
+        //otherwise check annotation permissions
+        if (annotation.permissions) {
+            var permissionUserIds = annotation.permissions[action] || [];
+            //if no userids set for a permission, it is open to everyone
+            if (permissionUserIds.length === 0) {
+                return true;
+            }
+            //otherwise compare userid of annotation to current userid
+            if (permissionUserIds.indexOf(this.userid) !== -1) {
+                return true;
+            }
+            return false;
+        } else if (annotation.user) {
+            //if no permissions, just check userids
+            return this.userid === annotation.user.userid;
+        }
+        //otherwise, just return true
+        return true;
+        }
   };
 }(Mirador));
