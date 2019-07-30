@@ -27,6 +27,10 @@ $.WordPressEndpoint = function (options) {
         uri: null,
         url: options.url,
         dfd: null,
+        // WordPress user ID
+        userid: null,
+        // WordPress username
+        username: null,
         // OA list for Mirador use
         annotationsList: [],
         // internal list for module use to map id to URI
@@ -97,6 +101,10 @@ $.WordPressEndpoint = function (options) {
             _this.dfd.reject();
             console.log('The request for annotations has caused an error for endpoint: ' + options.uri + ' due to ' + statusText);
           }
+        },
+        complete: function(xhr, textStatus) {
+            console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
+            _this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
 
       });
@@ -134,6 +142,10 @@ $.WordPressEndpoint = function (options) {
           } else {
             console.log('Failed to delete annotation ' + annotationID + ' due to ' + statusText);
           }
+        },
+        complete: function(xhr, textStatus) {
+            console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
+            _this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
 
       });
@@ -170,6 +182,10 @@ $.WordPressEndpoint = function (options) {
           } else {
             console.log('Failed to update annotation: ' + oaAnnotation['@id'] + ' due to ' + statusText);
           }
+        },
+        complete: function(xhr, textStatus) {
+            console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
+            _this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
       });
       // this is what updates the viewer
@@ -207,6 +223,10 @@ $.WordPressEndpoint = function (options) {
           } else {
             console.log('Failed to create annotation: ' + oaAnnotation['@id'] + ' due to ' + statusText);
           }
+        },
+        complete: function(xhr, textStatus) {
+            console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
+            _this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
       });
     },
