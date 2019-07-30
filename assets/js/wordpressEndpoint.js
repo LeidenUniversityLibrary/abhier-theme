@@ -68,7 +68,7 @@ $.WordPressEndpoint = function (options) {
         type: 'GET',
         dataType: 'json',
         headers: {
-          'X-WP-Nonce': this.nonce
+          'X-WP-Nonce': _this.nonce
         },
         data: {
           uri: options.uri,
@@ -121,11 +121,11 @@ $.WordPressEndpoint = function (options) {
     deleteAnnotation: function (annotationID, returnSuccess, returnError) {
       var _this = this;
       jQuery.ajax({
-        url: _this.url + '/destroy?uri=' + encodeURIComponent(_this.idMapper[annotationID]) + '&APIKey=' + _this.APIKey, // this.prefix+
+        url: _this.url + '/destroy?uri=' + encodeURIComponent(_this.idMapper[annotationID]),
         type: 'DELETE',
         dataType: 'json',
         headers: {
-            'X-WP-Nonce': this.nonce
+            'X-WP-Nonce': _this.nonce
         },
         data: {
           uri: annotationID,
@@ -162,11 +162,11 @@ $.WordPressEndpoint = function (options) {
       delete annotation.fullId;
       delete annotation.endpoint;
       jQuery.ajax({
-        url: _this.url + '/update?APIKey=' + _this.APIKey, // this.prefix+
+        url: _this.url + '/update',
         type: 'POST',
         dataType: 'json',
         headers: {
-            'X-WP-Nonce': this.nonce
+            'X-WP-Nonce': _this.nonce
         },
         data: JSON.stringify(annotation),
         contentType: 'application/json; charset=utf-8',
@@ -199,11 +199,11 @@ $.WordPressEndpoint = function (options) {
       var _this = this;
 
       jQuery.ajax({
-        url: _this.url + '/create?APIKey=' + _this.APIKey, // this.prefix+
+        url: _this.url + '/create',
         type: 'POST',
         dataType: 'json',
         headers: {
-            'X-WP-Nonce': this.nonce
+            'X-WP-Nonce': _this.nonce
         },
         data: JSON.stringify(annotation),
         contentType: 'application/json; charset=utf-8',
