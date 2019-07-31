@@ -94,6 +94,7 @@ $.WordPressEndpoint = function (options) {
             value.endpoint = _this;
             // Ensure on is an array
             _this.fixOn(value);
+            _this.deriveAnnotatedBy(value);
           });
           if (typeof successCallback === 'function') {
             successCallback(data);
@@ -126,6 +127,19 @@ $.WordPressEndpoint = function (options) {
       if (annotation && annotation.on && !jQuery.isArray(annotation.on) && annotation.on.selector && annotation.on.selector.default) {
         oldOn = annotation.on;
         annotation.on = [oldOn];
+      }
+    },
+
+    /**
+     * Derive annotatedBy from dcterms:creator.
+     * @param {*} annotation
+     */
+    deriveAnnotatedBy: function (annotation) {
+      if (annotation && 'dcterms:creator' in annotation) {
+        annotation.annotatedBy = {
+          'userid': annotation['dcterms:creator']['foaf:mbox_sha1sum'],
+          'name':   annotation['dcterms:creator']['foaf:name'],
+        };
       }
     },
 
@@ -184,6 +198,7 @@ $.WordPressEndpoint = function (options) {
       annotation['@id'] = annotation.fullId;
       delete annotation.fullId;
       delete annotation.endpoint;
+      delete annotation.annotatedBy;
       jQuery.ajax({
         url: _this.url + '/update',
         type: 'POST',
@@ -215,6 +230,7 @@ $.WordPressEndpoint = function (options) {
       annotation.endpoint = _this;
       annotation.fullId = annotation['@id'];
       annotation['@id'] = shortId;
+      _this.deriveAnnotatedBy(annotation);
     },
 
     /**
@@ -242,6 +258,7 @@ $.WordPressEndpoint = function (options) {
           data.endpoint = _this;
           _this.idMapper[data['@id']] = data.fullId;
           _this.fixOn(data);
+          _this.deriveAnnotatedBy(data);
           if (typeof returnSuccess === 'function') {
             returnSuccess(data);
           }
