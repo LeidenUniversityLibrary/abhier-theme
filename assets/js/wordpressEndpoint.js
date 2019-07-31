@@ -277,33 +277,19 @@ $.WordPressEndpoint = function (options) {
      * @param {*} annotation 
      */
     userAuthorize: function (action, annotation) {
-        //if this is an editor or administrator, they have access to all annotations
-        if (this.roles && (this.roles.indexOf('Editor') !== -1 || this.roles.indexOf('Administrator') !== -1)){
-            console.log('User is editor or administrator; action %s is allowed', action);
+        //if this is an editor, they have access to all annotations
+        if (this.userrole && 'Editor' === this.userrole){
+            console.log('User is editor; action %s is allowed', action);
             return true;
         }
-        //otherwise check annotation permissions
-        if (annotation.permissions) {
-            var permissionUserIds = annotation.permissions[action] || [];
-            //if no userids set for a permission, it is open to everyone
-            if (permissionUserIds.length === 0) {
-                console.log('No restrictions set for action %s on %O', action, annotation);
-                return true;
-            }
-            //otherwise compare userid of annotation to current userid
-            if (permissionUserIds.indexOf(this.userid) !== -1) {
-                console.log('User is allowed to perform action %s on %O', action, annotation);
-                return true;
-            }
-            return false;
-        } else if (annotation.user) {
+        if (annotation.annotatedBy && annotation.annotatedBy.userid) {
             //if no permissions, just check userids
             console.log('Checking that current user is the annotator of %O', annotation);
-            return this.userid === annotation.user.userid;
+            return this.userid === annotation.annotatedBy.userid;
         }
-        //otherwise, just return true
-        console.info('Allowing action %s on %O because of default setting', action, annotation);
-        return true;
+        //otherwise, return false
+        console.info('Disallowing action %s on %O because of default setting', action, annotation);
+        return false;
     }
   };
 }(Mirador));
