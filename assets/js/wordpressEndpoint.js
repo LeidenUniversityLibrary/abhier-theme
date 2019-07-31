@@ -59,7 +59,12 @@ $.WordPressEndpoint = function (options) {
       };
     },
 
-    // Search endpoint for all annotations with a given URI
+    /**
+     * Search endpoint for all annotations with a given URI
+     * @param {*} options 
+     * @param {*} successCallback 
+     * @param {*} errorCallback 
+     */
     search: function (options, successCallback, errorCallback) {
       var _this = this;
 
@@ -120,6 +125,12 @@ $.WordPressEndpoint = function (options) {
       }
     },
 
+    /**
+     * Delete an annotation by its ID
+     * @param {*} annotationID 
+     * @param {*} returnSuccess 
+     * @param {*} returnError 
+     */
     deleteAnnotation: function (annotationID, returnSuccess, returnError) {
       var _this = this;
       jQuery.ajax({
@@ -153,6 +164,12 @@ $.WordPressEndpoint = function (options) {
       });
     },
 
+    /**
+     * Update an annotation on the server.
+     * @param {Object} oaAnnotation 
+     * @param {*} returnSuccess 
+     * @param {*} returnError 
+     */
     update: function (oaAnnotation, returnSuccess, returnError) {
       var annotation = oaAnnotation;
       var _this = this;
@@ -196,6 +213,12 @@ $.WordPressEndpoint = function (options) {
       annotation['@id'] = shortId;
     },
 
+    /**
+     * Create an annotation on the server
+     * @param {*} oaAnnotation 
+     * @param {*} returnSuccess 
+     * @param {*} returnError 
+     */
     create: function (oaAnnotation, returnSuccess, returnError) {
       var annotation = oaAnnotation;
       var _this = this;
@@ -240,6 +263,15 @@ $.WordPressEndpoint = function (options) {
         this[prop] = value;
       }
     },
+
+    /**
+     * Determine whether this user is allowed to perform an action on an annotation.
+     * 
+     * This only checks information that is available on the client side;
+     * the server may still disagree with the result.
+     * @param {string} action 
+     * @param {*} annotation 
+     */
     userAuthorize: function (action, annotation) {
         //if this is an editor or administrator, they have access to all annotations
         if (this.roles && (this.roles.indexOf('Editor') !== -1 || this.roles.indexOf('Administrator') !== -1)){
