@@ -51,8 +51,8 @@ get_header();
 				'canvasID' => $post->ubl_ah_canvas_uri,
 				'endpointUrl' => rest_url('mirador-anno/v1'),
 				'nonce' => $user_token,
-				'userid' => $current_user->ID,
-				'username' => $current_user->display_name,
+				'userid' => sha1('mailto:' . $current_user->user_email),
+				'username' => esc_html($current_user->display_name),
 				'userrole' => current_user_can('edit_others_posts') ? 'Editor' : '',
 			));
 
