@@ -27,11 +27,11 @@ $.WordPressEndpoint = function (options) {
         uri: null,
         url: options.url,
         dfd: null,
-        // WordPress user ID
+        // WordPress user ID: user's mbox_sha1sum
         userid: null,
-        // WordPress username
+        // WordPress username (display name)
         username: null,
-        // WordPress user role
+        // WordPress user role ('Editor' or '')
         userrole: null,
         // OA list for Mirador use
         annotationsList: [],
@@ -117,6 +117,10 @@ $.WordPressEndpoint = function (options) {
       });
     },
 
+    /**
+     * Make sure the target of the annotation is an array.
+     * @param {object} annotation 
+     */
     fixOn: function (annotation) {
       var oldOn;
       if (annotation && annotation.on && !jQuery.isArray(annotation.on) && annotation.on.selector && annotation.on.selector.default) {
