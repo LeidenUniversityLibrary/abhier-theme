@@ -158,9 +158,7 @@ $.WordPressEndpoint = function (options) {
         headers: {
             'X-WP-Nonce': this.nonce
         },
-        data: {
-          uri: annotationID,
-        },
+        data: JSON.stringify({ uri: annotationID }),
         contentType: 'application/json; charset=utf-8',
         success: function(data) {
           if (typeof returnSuccess === 'function') {
