@@ -7,3 +7,8 @@ div#viewer {
     height: 725px;
     position: relative;
 }
+
+/* Override Modern Theme very specifically */
+.hud-control {
+    box-sizing: content-box;
+}
