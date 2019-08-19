@@ -16,6 +16,7 @@ $(function() {
             id: "the_window",
             viewType: "ImageView",
             availableViews:  ['ImageView'],
+            annotationCreation: my_object.annotationCreation,
         }],
         availableAnnotationDrawingTools: [
         'Rectangle', 'Ellipse', 'Polygon'

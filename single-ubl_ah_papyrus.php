@@ -54,6 +54,7 @@ get_header();
 				'userid' => sha1('mailto:' . $current_user->user_email),
 				'username' => esc_html($current_user->display_name),
 				'userrole' => current_user_can('edit_others_posts') ? 'Editor' : '',
+				'annotationCreation' => current_user_can('edit_others_posts') ? true : false,
 			));
 
 			the_content( apply_filters( 'wmhook_modern_summary_continue_reading', '' ) );
