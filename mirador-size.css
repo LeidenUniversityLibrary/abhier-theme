@@ -11,4 +11,5 @@ div#viewer {
 /* Override Modern Theme very specifically */
 .hud-control {
     box-sizing: content-box;
+    line-height: normal;
 }
