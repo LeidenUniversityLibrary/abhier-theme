@@ -56,7 +56,7 @@ get_header();
 				'userrole' => current_user_can('edit_others_posts') ? 'Editor' : '',
 				'annotationCreation' => current_user_can('edit_others_posts') ? true : false,
 			);
-			wp_add_inline_script( 'mirador-config', 'var my_object = ' . json_encode($dynamic_config) );
+			wp_add_inline_script( 'wp-endpoint', 'var my_object = ' . json_encode($dynamic_config) );
 
 			the_content( apply_filters( 'wmhook_modern_summary_continue_reading', '' ) );
 
