@@ -111,7 +111,7 @@ $.WordPressEndpoint = function (options) {
           }
         },
         complete: function(xhr, textStatus) {
-            console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
+            // console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
             this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
 
@@ -173,7 +173,7 @@ $.WordPressEndpoint = function (options) {
           }
         },
         complete: function(xhr, textStatus) {
-            console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
+            // console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
             this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
 
@@ -220,7 +220,7 @@ $.WordPressEndpoint = function (options) {
           }
         },
         complete: function(xhr, textStatus) {
-            console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
+            // console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
             this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
       });
@@ -269,7 +269,7 @@ $.WordPressEndpoint = function (options) {
           }
         },
         complete: function(xhr, textStatus) {
-            console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
+            // console.log("New nonce: " + xhr.getResponseHeader('X-WP-Nonce'));
             this.nonce = xhr.getResponseHeader('X-WP-Nonce');
         }
       });
@@ -294,16 +294,16 @@ $.WordPressEndpoint = function (options) {
     userAuthorize: function (action, annotation) {
         //if this is an editor, they have access to all annotations
         if (this.userrole && 'Editor' === this.userrole){
-            console.log('User is editor; action %s is allowed', action);
+            // console.log('User is editor; action %s is allowed', action);
             return true;
         }
         if (annotation.annotatedBy && annotation.annotatedBy.userid) {
             //if no permissions, just check userids
-            console.log('Checking that current user is the annotator of %O', annotation);
+            // console.log('Checking that current user is the annotator of %O', annotation);
             return this.userid === annotation.annotatedBy.userid;
         }
         //otherwise, return false
-        console.info('Disallowing action %s on %O because of default setting', action, annotation);
+        // console.info('Disallowing action %s on %O because of default setting', action, annotation);
         return false;
     }
   };
