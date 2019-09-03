@@ -1,0 +1,15 @@
+/*
+Extra CSS for Mirador sizing
+*/
+
+div#viewer {
+    width: 100%;
+    height: 725px;
+    position: relative;
+}
+
+/* Override Modern Theme very specifically */
+.hud-control {
+    box-sizing: content-box;
+    line-height: normal;
+}
