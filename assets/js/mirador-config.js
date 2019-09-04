@@ -12,6 +12,7 @@ zoomAnno = function(annoId) {
     var anno = searchAnno(annoId);
     if (anno != null) {
         var fragment = anno.on[0].selector.default.value;
+        console.debug(fragment);
         var parts = fragment.slice(5).split(',');
         mir.eventEmitter.publish('fitBounds.the_window', {'x': parts[0], 'y': parts[1], 'width': parts[2], 'height': parts[3]});
     }
@@ -54,9 +55,7 @@ $(function() {
             }
         }
     });
-    mir.eventEmitter.subscribe('annotationListLoaded.the_window', function(data) {
-        console.log(data);
-        console.log(mir.viewer.workspace);
+    mir.eventEmitter.subscribe('windowAdded', function(data) {
         var parsedUrl = new URL(window.location.href);
         var param = parsedUrl.searchParams.get("anno");
         if (param != null) {
@@ -67,5 +66,4 @@ $(function() {
             }
         }
     });
-    
 });
