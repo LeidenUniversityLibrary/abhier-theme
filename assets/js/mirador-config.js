@@ -55,8 +55,8 @@ $(function() {
         }
     });
     mir.eventEmitter.subscribe('annotationListLoaded.the_window', function(data) {
-        console.log(data);
-        console.log(mir.viewer.workspace);
+        // console.log(data);
+        // console.log(mir.viewer.workspace);
         var parsedUrl = new URL(window.location.href);
         var param = parsedUrl.searchParams.get("anno");
         if (param != null) {
