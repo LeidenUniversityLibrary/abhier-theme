@@ -62,6 +62,9 @@ $(function() {
     mir.eventEmitter.subscribe('imageBoundsUpdated', function(event, options) {
         console.debug('imageBoundsUpdated:', options);
     });
+    mir.eventEmitter.subscribe('imageRectUpdated', function(event, options) {
+        console.debug('imageRectUpdated:', options);
+    });
     mir.eventEmitter.subscribe('annotationListLoaded.the_window', function(data) {
         // console.log(data);
         // console.log(mir.viewer.workspace);
