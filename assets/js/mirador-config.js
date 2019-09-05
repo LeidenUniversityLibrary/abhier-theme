@@ -11,7 +11,9 @@ searchAnno = function(annoId) {
 zoomAnno = function(annoId) {
     var anno = searchAnno(annoId);
     if (anno != null) {
+        console.debug(anno);
         var fragment = anno.on[0].selector.default.value;
+        console.log(fragment);
         var parts = fragment.slice(5).split(',');
         mir.eventEmitter.publish('fitBounds.the_window', {'x': parts[0], 'y': parts[1], 'width': parts[2], 'height': parts[3]});
     }
@@ -53,6 +55,12 @@ $(function() {
                 userrole: my_object.userrole,
             }
         }
+    });
+    mir.eventEmitter.subscribe('fitBounds.the_window', function(event, bounds) {
+        console.debug('fitBounds:', bounds);
+    });
+    mir.eventEmitter.subscribe('imageBoundsUpdated', function(event, options) {
+        console.debug('imageBoundsUpdated:', options);
     });
     mir.eventEmitter.subscribe('annotationListLoaded.the_window', function(data) {
         // console.log(data);
