@@ -15,7 +15,7 @@ zoomAnno = function(annoId) {
         var fragment = anno.on[0].selector.default.value;
         console.log(fragment);
         var parts = fragment.slice(5).split(',');
-        mir.eventEmitter.publish('fitBounds.the_window', {'x': parts[0], 'y': parts[1], 'width': parts[2], 'height': parts[3]});
+        mir.eventEmitter.publish('fitBounds.the_window', {'x': parseInt(parts[0]), 'y': parseInt(parts[1]), 'width': parseInt(parts[2]), 'height': parseInt(parts[3])});
     }
 }
 $(function() {
