@@ -13,7 +13,7 @@ zoomAnno = function(annoId) {
     if (anno != null) {
         console.debug(anno);
         var fragment = anno.on[0].selector.default.value;
-        console.log(fragment);
+        console.debug('Canvas fragment targeted by annotation:', fragment);
         var parts = fragment.slice(5).split(',');
         mir.eventEmitter.publish('fitBounds.the_window', {'x': parseInt(parts[0]), 'y': parseInt(parts[1]), 'width': parseInt(parts[2]), 'height': parseInt(parts[3])});
     }
@@ -56,18 +56,7 @@ $(function() {
             }
         }
     });
-    mir.eventEmitter.subscribe('fitBounds.the_window', function(event, bounds) {
-        console.debug('fitBounds:', bounds);
-    });
-    mir.eventEmitter.subscribe('imageBoundsUpdated', function(event, options) {
-        console.debug('imageBoundsUpdated:', options);
-    });
-    mir.eventEmitter.subscribe('imageRectUpdated', function(event, options) {
-        console.debug('imageRectUpdated:', options);
-    });
     mir.eventEmitter.subscribe('annotationListLoaded.the_window', function(data) {
-        // console.log(data);
-        // console.log(mir.viewer.workspace);
         var parsedUrl = new URL(window.location.href);
         var param = parsedUrl.searchParams.get("anno");
         if (param != null) {
