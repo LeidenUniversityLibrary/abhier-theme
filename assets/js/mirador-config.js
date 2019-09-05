@@ -56,7 +56,6 @@ $(function() {
         }
     });
     mir.eventEmitter.subscribe('windowAdded', function(data) {
-        console.debug('Window added', data);
         var parsedUrl = new URL(window.location.href);
         var param = parsedUrl.searchParams.get("anno");
         if (param != null) {
