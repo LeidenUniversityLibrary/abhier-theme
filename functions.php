@@ -28,4 +28,5 @@ function abhier_theme_login_register_link($menu_items, $args) {
     $menu_items .= '<li class="menu-item">'
         . wp_loginout( $_SERVER['REQUEST_URI'], false )
         . '</li>';
+    return $menu_items;
 }
