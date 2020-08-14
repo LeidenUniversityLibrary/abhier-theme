@@ -19,4 +19,13 @@ function abhier_theme_enqueue_styles() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'abhier_theme_enqueue_styles' );
-?>
+
+add_filter( 'wp_nav_menu_items', 'abhier_theme_login_register_link' );
+
+function abhier_theme_login_register_link($menu_items, $args) {
+    // add the login or register URL
+    $menu_items .= wp_register('<li class="menu-item">', '</li>', false);
+    $menu_items .= '<li class="menu-item">'
+        . wp_loginout( $_SERVER['REQUEST_URI'], false )
+        . '</li>';
+}
