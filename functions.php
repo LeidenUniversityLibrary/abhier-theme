@@ -20,8 +20,12 @@ function abhier_theme_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'abhier_theme_enqueue_styles' );
 
-add_filter( 'wp_nav_menu_items', 'abhier_theme_login_register_link' );
+add_filter( 'wp_nav_menu_items', 'abhier_theme_login_register_link', 16, 2 );
 
+/**
+ * Add links to registration and log in, or site admin and log out
+ * in the menu. The function should be called late and receive two arguments.
+ */
 function abhier_theme_login_register_link($menu_items, $args) {
     // add the login or register URL
     $menu_items .= wp_register('<li class="menu-item">', '</li>', false);
